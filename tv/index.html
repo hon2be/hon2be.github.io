@@ -5,221 +5,170 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>허니비TV</title>
 <meta name="description" content="AI·컴퓨터 왕초보·시니어 유튜브 채널">
-<meta name="theme-color" content="#111111">
+<meta name="theme-color" content="#ffffff">
 <meta property="og:title" content="허니비TV">
-<meta property="og:description" content="AI·컴퓨터 왕초보·시니어 유튜브 채널">
+<meta property="og:description" content="AI·컴퓨터 왕초보·시니어를 위한 유튜브 채널 · 오픈소스 프로젝트">
 <meta property="og:type" content="website">
-<style>
-  :root {
-    --bg: #ffffff;
-    --fg: #111111;
-    --muted: #6b7280;
-    --border: #e5e7eb;
-    --accent: #ea580c;
-    --accent-hover: #c2410c;
-    --hover: #f9fafb;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
-    background: var(--bg); color: var(--fg);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    padding: 24px 20px 60px;
-  }
-  .wrap { max-width: 640px; margin: 0 auto; }
-
-  header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 28px;
-  }
-  header .brand { font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
-  header .brand span { color: var(--muted); font-weight: 500; margin-left: 6px; font-size: 14px; }
-  header .status { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
-  header .status b { color: var(--fg); font-weight: 600; }
-
-  .bar {
-    height: 2px; background: var(--border); border-radius: 2px; overflow: hidden;
-    margin-bottom: 32px;
-  }
-  .bar-fill {
-    height: 100%; background: var(--accent);
-    transition: width 1s linear;
-    width: 100%;
-  }
-
-  h2 {
-    font-size: 13px; font-weight: 600; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.06em;
-    margin-bottom: 12px;
-  }
-
-  .tip {
-    padding: 16px 18px; margin-bottom: 32px;
-    border: 1px solid var(--border); border-radius: 8px;
-    display: flex; gap: 14px; align-items: flex-start;
-    background: var(--hover);
-  }
-  .tip .k { font-size: 12px; color: var(--accent); font-weight: 700; letter-spacing: 0.04em; }
-  .tip .v { font-size: 15px; color: var(--fg); margin-top: 4px; line-height: 1.5; }
-  .tip .v b { font-weight: 700; }
-
-  .videos { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
-  .video {
-    background: var(--bg); padding: 12px;
-    display: flex; gap: 14px; align-items: center;
-    text-decoration: none; color: inherit;
-    transition: background 0.15s;
-  }
-  .video:hover { background: var(--hover); }
-  .video:active { background: var(--border); }
-  .thumb {
-    width: 128px; height: 72px; flex-shrink: 0;
-    background: #000 no-repeat center/cover;
-    border-radius: 4px; position: relative;
-  }
-  .thumb .d {
-    position: absolute; right: 4px; bottom: 4px;
-    background: rgba(0,0,0,0.85); color: white;
-    padding: 1px 5px; border-radius: 2px;
-    font-size: 11px; font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-  .video .info { flex: 1; min-width: 0; }
-  .video .title {
-    font-size: 14px; font-weight: 500; color: var(--fg);
-    line-height: 1.4;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .video .meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
-
-  .actions { display: flex; gap: 8px; margin-bottom: 20px; }
-  .btn {
-    flex: 1; text-align: center;
-    padding: 12px 16px;
-    font-size: 14px; font-weight: 600;
-    text-decoration: none;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    color: var(--fg); background: var(--bg);
-    transition: background 0.15s;
-  }
-  .btn:hover { background: var(--hover); }
-  .btn.primary {
-    background: var(--fg); color: var(--bg);
-    border-color: var(--fg);
-  }
-  .btn.primary:hover { background: #000; }
-
-  footer {
-    font-size: 12px; color: var(--muted); text-align: center;
-    padding-top: 24px; border-top: 1px solid var(--border);
-    line-height: 1.6;
-  }
-  footer a { color: var(--muted); text-decoration: underline; }
-
-  @media (min-width: 480px) {
-    header .brand { font-size: 20px; }
-    h2 { font-size: 12px; }
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0a0a0a; --fg: #fafafa; --muted: #a1a1aa;
-      --border: #262626; --hover: #171717;
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          gold: {
+            50:  '#fdf9ee',
+            100: '#faf1d0',
+            200: '#f4e19b',
+            300: '#eecd63',
+            400: '#e8b93c',
+            500: '#d4a017',
+            600: '#b8860b',
+            700: '#946a09',
+            800: '#79570d',
+            900: '#664810',
+          }
+        },
+        fontFamily: {
+          sans: ['-apple-system', 'BlinkMacSystemFont', 'Pretendard', 'Noto Sans KR', 'Segoe UI', 'sans-serif'],
+        }
+      }
     }
   }
-</style>
+</script>
 </head>
-<body>
-<div class="wrap">
+<body class="bg-white text-gray-900 antialiased">
+<main class="max-w-md mx-auto px-5 py-8">
 
-  <header>
-    <div class="brand">허니비TV <span>@hon2bee_kr</span></div>
-    <div class="status"><span id="cd-msg">유튜브 앱으로 이동</span> · <b id="cd-num">10</b>초</div>
+  <!-- Header · 작게 -->
+  <header class="flex items-center justify-between mb-8">
+    <div class="text-lg font-bold tracking-tight">honeybee</div>
+    <div class="text-xs text-gray-400 font-mono">@hon2bee_kr</div>
   </header>
 
-  <div class="bar"><div class="bar-fill" id="cd-fill"></div></div>
+  <!-- SECTION 1 · 채널 설명 + 이동하기 -->
+  <section class="mb-10 pb-10 border-b border-gray-100">
+    <div class="text-xs font-semibold uppercase tracking-widest text-gold-600 mb-3">허니비TV</div>
+    <h1 class="text-2xl font-bold tracking-tight leading-tight mb-3">
+      AI·컴퓨터 왕초보<br>
+      <span class="text-gold-600">시니어를 위한</span> 채널
+    </h1>
+    <p class="text-sm text-gray-600 leading-relaxed mb-6">
+      챗지피티·클로드·미드저니 · 마우스·트랙패드까지.
+      어르신·왕초보의 첫걸음을 · 천천히 · 함께 배웁니다.
+    </p>
+    <a id="appBtn" href="https://youtube.com/@hon2bee_kr"
+       class="block w-full text-center px-5 py-3.5 bg-gold-500 hover:bg-gold-600 active:bg-gold-700 text-white text-sm font-semibold rounded-lg transition-colors">
+      이동하기 →
+    </a>
+  </section>
 
-  <h2>Tip</h2>
-  <div class="tip">
-    <div>
-      <div class="k" id="tip-k">배속</div>
-      <div class="v" id="tip-v">우하단 <b>톱니바퀴 ⚙</b> → 재생 속도 → <b>0.75배</b>로 · 훨씬 편하게 들으실 수 있어요.</div>
+  <!-- SECTION 2 · 최신 영상 2건 -->
+  <section class="mb-10 pb-10 border-b border-gray-100">
+    <div class="flex items-baseline justify-between mb-4">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-500">최신 영상</h2>
+      <a href="https://youtube.com/@hon2bee_kr/videos" class="text-xs text-gold-600 hover:text-gold-700 font-medium">전체 →</a>
     </div>
-  </div>
 
-  <h2>최신 영상</h2>
-  <div class="videos" id="videos">
-    <a class="video" href="https://youtu.be/m_1VpcBIjl4" data-id="m_1VpcBIjl4">
-      <div class="thumb" style="background-image:url('https://i.ytimg.com/vi/m_1VpcBIjl4/mqdefault.jpg')"><span class="d">6:44</span></div>
-      <div class="info">
-        <div class="title">[AI 왕초보·시니어 강의 #8] AI 요금제 자동차 사듯이 · 3사 정답</div>
-        <div class="meta">허니비 · 최신</div>
-      </div>
-    </a>
-    <a class="video" href="https://youtu.be/vL7JWTmMWEk" data-id="vL7JWTmMWEk">
-      <div class="thumb" style="background-image:url('https://i.ytimg.com/vi/vL7JWTmMWEk/mqdefault.jpg')"><span class="d">6:24</span></div>
-      <div class="info">
-        <div class="title">[AI 왕초보·시니어 강의 #7] 챗지피티는 그만 · 이제는 클로드로 · 30분에 블로그 한 편</div>
-        <div class="meta">허니비</div>
-      </div>
-    </a>
-    <a class="video" href="https://youtu.be/63cOkTVRKcg" data-id="63cOkTVRKcg">
-      <div class="thumb" style="background-image:url('https://i.ytimg.com/vi/63cOkTVRKcg/mqdefault.jpg')"><span class="d">0:48</span></div>
-      <div class="info">
-        <div class="title">AI 요금제 20초 정리 · 자동차 사듯이 · Shorts</div>
-        <div class="meta">허니비 · Shorts</div>
-      </div>
-    </a>
-  </div>
+    <div class="space-y-5">
+      <a href="https://youtu.be/m_1VpcBIjl4" data-id="m_1VpcBIjl4" class="video block group">
+        <div class="relative aspect-video rounded-lg overflow-hidden bg-gray-100 mb-3">
+          <img src="https://i.ytimg.com/vi/m_1VpcBIjl4/mqdefault.jpg" alt="" class="w-full h-full object-cover">
+          <span class="absolute right-2 bottom-2 bg-black/85 text-white text-[11px] font-medium px-1.5 py-0.5 rounded">6:44</span>
+        </div>
+        <div class="text-sm font-semibold leading-snug group-hover:text-gold-700 transition-colors mb-1">
+          AI 요금제 · 자동차 사듯이
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed">
+          챗지피티·클로드·제미나이 3사 요금제를 자동차에 비유해 정리. 어떤 걸 골라야 할지 · 6분에 끝냅니다.
+        </div>
+        <div class="text-[11px] text-gray-400 mt-2">AI 왕초보·시니어 강의 #8 · 6분 44초</div>
+      </a>
 
-  <div class="actions">
-    <a id="appBtn" class="btn primary" href="https://youtube.com/@hon2bee_kr">앱으로 이동</a>
-    <a class="btn" href="https://youtube.com/@hon2bee_kr">웹으로 계속</a>
-  </div>
+      <a href="https://youtu.be/vL7JWTmMWEk" data-id="vL7JWTmMWEk" class="video block group">
+        <div class="relative aspect-video rounded-lg overflow-hidden bg-gray-100 mb-3">
+          <img src="https://i.ytimg.com/vi/vL7JWTmMWEk/mqdefault.jpg" alt="" class="w-full h-full object-cover">
+          <span class="absolute right-2 bottom-2 bg-black/85 text-white text-[11px] font-medium px-1.5 py-0.5 rounded">6:24</span>
+        </div>
+        <div class="text-sm font-semibold leading-snug group-hover:text-gold-700 transition-colors mb-1">
+          챗지피티는 그만 · 이제는 클로드로
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed">
+          Claude로 · 30분에 블로그 한 편 완성하는 실전 흐름. 프롬프트·수정·발행까지 · 한 번에.
+        </div>
+        <div class="text-[11px] text-gray-400 mt-2">AI 왕초보·시니어 강의 #7 · 6분 24초</div>
+      </a>
+    </div>
+  </section>
 
-  <footer>
-    카톡·인스타에서 열렸다면 · 우상단 ⋯ · "다른 브라우저에서 열기"<br>
-    <a href="https://youtube.com/@hon2bee_kr">youtube.com/@hon2bee_kr</a>
+  <!-- SECTION 3 · GitHub 기여 -->
+  <section class="mb-10">
+    <div class="flex items-baseline justify-between mb-4">
+      <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-500">GitHub 오픈소스</h2>
+      <a href="https://github.com/hon2be" class="text-xs text-gold-600 hover:text-gold-700 font-medium">전체 →</a>
+    </div>
+
+    <div class="space-y-3">
+
+      <a href="https://github.com/hon2be/k-novice-ui-kit" class="block group p-3 -mx-3 rounded-lg hover:bg-gold-50 transition-colors">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-sm font-semibold group-hover:text-gold-700">k-novice-ui-kit</span>
+          <span class="text-[10px] font-mono text-gray-400">TypeScript</span>
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed">
+          Remotion 튜토리얼 · 어르신·왕초보용 UI 컴포넌트 킷. 큰 버튼·손가락 탭·설명 말풍선·폰 프레임·자막.
+        </div>
+      </a>
+
+      <a href="https://github.com/hon2be/midjourney-shorts-toolkit" class="block group p-3 -mx-3 rounded-lg hover:bg-gold-50 transition-colors">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-sm font-semibold group-hover:text-gold-700">midjourney-shorts-toolkit</span>
+          <span class="text-[10px] font-mono text-gray-400">TypeScript</span>
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed">
+          Remotion 세로 쇼츠 편집 · 에셋 인스펙터 · 코드 자동 저장.
+        </div>
+      </a>
+
+      <a href="https://github.com/hon2be/claude-skill-remotion-video" class="block group p-3 -mx-3 rounded-lg hover:bg-gold-50 transition-colors">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-sm font-semibold group-hover:text-gold-700">claude-skill-remotion-video</span>
+          <span class="text-[10px] font-mono text-gray-400">Skill</span>
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed">
+          Claude Code 스킬 · Remotion 영상·쇼츠 편집 자동화 가이드.
+        </div>
+      </a>
+
+      <a href="https://github.com/hon2be/repowise" class="block group p-3 -mx-3 rounded-lg hover:bg-gold-50 transition-colors">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-sm font-semibold group-hover:text-gold-700">repowise</span>
+          <span class="text-[10px] font-mono text-gray-400">Python</span>
+        </div>
+        <div class="text-xs text-gray-500 leading-relaxed">
+          AI 엔지니어링 팀용 코드베이스 인텔리전스 · 상태 점수·문서 자동생성·MCP.
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="pt-6 border-t border-gray-100 text-center">
+    <div class="text-[11px] text-gray-400 leading-relaxed mb-3">
+      카톡·인스타에서 열렸다면 · 우상단 <span class="font-mono">⋯</span> · 다른 브라우저에서 열기
+    </div>
+    <div class="flex justify-center gap-4 text-xs">
+      <a href="https://youtube.com/@hon2bee_kr" class="text-gray-500 hover:text-gold-600 font-mono">YouTube</a>
+      <a href="https://github.com/hon2be" class="text-gray-500 hover:text-gold-600 font-mono">GitHub</a>
+    </div>
   </footer>
 
-</div>
+</main>
 
 <script>
 (function() {
   var CHANNEL_ID = "UCtMpHsXPa0E7c9tkGCupgUw";
   var WEB_URL = "https://youtube.com/@hon2bee_kr";
-  var COUNTDOWN_SECS = 10;
-
-  var TIPS = [
-    { k: "배속", v: "우하단 <b>톱니바퀴 ⚙</b> → 재생 속도 → <b>0.75배</b>로 · 훨씬 편하게 들으실 수 있어요." },
-    { k: "자막", v: "우하단 <b>CC</b> 버튼 · 톡 · 글자로 함께 나와요. 소리 잘 안 들리셔도 · 놓치지 않으세요." },
-    { k: "전체화면", v: "제일 오른쪽 아래 · <b>네모 확대 ⛶</b> · 크게 · 시원하게. 다시 누르시면 원래대로." },
-    { k: "5초 되돌리기", v: "키보드 <b>왼쪽 화살표 키</b> · 5초씩 뒤로. 놓치신 부분 다시 듣기." },
-  ];
-  var pick = TIPS[Math.floor(Math.random() * TIPS.length)];
-  document.getElementById("tip-k").textContent = pick.k;
-  document.getElementById("tip-v").innerHTML = pick.v;
-
-  var count = COUNTDOWN_SECS;
-  var cdNum = document.getElementById("cd-num");
-  var cdFill = document.getElementById("cd-fill");
-  var cdMsg = document.getElementById("cd-msg");
-
-  var tick = setInterval(function() {
-    count--;
-    cdNum.textContent = count;
-    cdFill.style.width = (count / COUNTDOWN_SECS * 100) + "%";
-    if (count <= 3) cdMsg.textContent = "이동 중";
-    if (count <= 0) {
-      clearInterval(tick);
-      openYouTube();
-    }
-  }, 1000);
 
   function openYouTube(vid) {
     var ua = navigator.userAgent.toLowerCase();
@@ -242,18 +191,16 @@
         if (!document.hidden) window.location.replace(fallback);
       }, 2000);
     } else {
-      window.location.replace(fallback);
+      window.location.href = fallback;
     }
   }
 
   document.querySelectorAll(".video").forEach(function(card) {
     card.addEventListener("click", function(e) {
-      var vid = card.getAttribute("data-id");
       var ua = navigator.userAgent.toLowerCase();
       if (/android|iphone|ipad|ipod/.test(ua)) {
         e.preventDefault();
-        clearInterval(tick);
-        openYouTube(vid);
+        openYouTube(card.getAttribute("data-id"));
       }
     });
   });
@@ -262,7 +209,6 @@
     var ua = navigator.userAgent.toLowerCase();
     if (/android|iphone|ipad|ipod/.test(ua)) {
       e.preventDefault();
-      clearInterval(tick);
       openYouTube();
     }
   });
