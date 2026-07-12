@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>허니비 · honeybee</title>
+<meta name="description" content="AI·컴퓨터 왕초보·시니어를 위한 유튜브 채널 허니비TV">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    background: radial-gradient(circle at 50% 25%, #FDF3D6 0%, #FAF6EE 55%);
+    margin: 0; padding: 40px 24px;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    color: #2A241F;
+  }
+  .logo { font-size: 160px; line-height: 1; margin-bottom: 20px; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15)); }
+  h1 { font-size: 52px; font-weight: 900; margin: 0 0 16px; letter-spacing: -0.02em; }
+  .tag {
+    display: inline-block;
+    background: #C2410C; color: white;
+    padding: 12px 32px; border-radius: 999px;
+    font-size: 22px; font-weight: 700;
+    margin-bottom: 60px;
+  }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 20px; width: 100%; max-width: 480px; }
+  .card {
+    background: white; border-radius: 20px; padding: 28px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    text-decoration: none; color: #2A241F;
+    display: flex; align-items: center; gap: 20px;
+    transition: transform 0.15s;
+  }
+  .card:active { transform: scale(0.98); }
+  .card .icon { font-size: 60px; line-height: 1; }
+  .card .text { flex: 1; text-align: left; }
+  .card h3 { font-size: 26px; margin: 0 0 6px; font-weight: 900; }
+  .card p { font-size: 16px; margin: 0; color: #5C5148; line-height: 1.4; }
+  .card.primary { background: linear-gradient(135deg, #C2410C 0%, #F4A261 100%); color: white; }
+  .card.primary p { color: rgba(255,255,255,0.9); }
+  .footer { margin-top: 60px; font-size: 14px; color: #8A8072; }
+  .footer a { color: #C2410C; text-decoration: none; font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="logo">🍯</div>
+  <h1>허니비</h1>
+  <div class="tag">왕초보 · 시니어 IT 채널</div>
+
+  <div class="grid">
+    <a class="card primary" href="/tv/">
+      <div class="icon">▶</div>
+      <div class="text">
+        <h3>허니비TV</h3>
+        <p>유튜브 채널 · 앱으로 바로 열기</p>
+      </div>
+    </a>
+    <a class="card" href="https://github.com/hon2be/k-novice-ui-kit">
+      <div class="icon">🧩</div>
+      <div class="text">
+        <h3>k-novice-ui-kit</h3>
+        <p>Remotion UI 컴포넌트 라이브러리 (오픈소스)</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <a href="https://github.com/hon2be">github.com/hon2be</a>
+  </div>
+</body>
+</html>

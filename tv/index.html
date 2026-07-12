@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>허니비TV · 왕초보 시니어 컴맹탈출</title>
+<meta name="description" content="어르신·왕초보를 위한 유튜브 채널 · 컴퓨터·AI 처음이신 분">
+<meta property="og:title" content="허니비TV · 왕초보 시니어">
+<meta property="og:description" content="컴퓨터·AI 왕초보를 위한 유튜브 채널">
+<meta property="og:image" content="https://hon2be.github.io/k-novice-ui-kit/gallery/mascot-honeybee.png">
+<meta property="og:type" content="website">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    background: radial-gradient(circle at 50% 30%, #FDF3D6 0%, #FAF6EE 60%);
+    margin: 0; padding: 40px 24px;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    color: #2A241F;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .logo { font-size: 140px; line-height: 1; margin-bottom: 20px; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15)); }
+  h1 {
+    font-size: 42px; font-weight: 900; margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+  .badge {
+    display: inline-block;
+    background: #C2410C; color: white;
+    padding: 10px 24px; border-radius: 999px;
+    font-size: 20px; font-weight: 700;
+    margin-bottom: 40px;
+  }
+  .btn {
+    display: block; width: 100%; max-width: 400px;
+    background: #C2410C; color: white;
+    padding: 24px 32px; border-radius: 999px;
+    font-size: 24px; font-weight: 900;
+    text-decoration: none; margin: 12px 0;
+    box-shadow: 0 12px 32px rgba(194,65,12,0.35);
+    transition: transform 0.15s;
+    letter-spacing: -0.01em;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn.secondary {
+    background: white; color: #C2410C;
+    border: 3px solid #C2410C;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .help {
+    font-size: 16px; color: #5C5148; margin-top: 40px;
+    line-height: 1.7; max-width: 420px;
+  }
+  .help strong { color: #C2410C; }
+  .link { font-size: 13px; color: #8A8072; margin-top: 20px; word-break: break-all; }
+  @media (max-height: 700px) {
+    .logo { font-size: 100px; margin-bottom: 12px; }
+    h1 { font-size: 36px; }
+    .btn { padding: 20px 28px; font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="logo">🍯</div>
+  <h1>허니비TV</h1>
+  <div class="badge">왕초보 · 시니어 컴맹탈출</div>
+
+  <a id="appBtn" class="btn" href="https://youtube.com/@hon2bee_kr">
+    ▶ YouTube 앱으로 열기
+  </a>
+  <a class="btn secondary" href="https://youtube.com/@hon2bee_kr">
+    🌐 웹으로 계속 보기
+  </a>
+
+  <div class="help">
+    자동으로 앱이 안 열리시면 · <strong>위 주황 버튼</strong>을 눌러주세요.<br><br>
+    카톡·인스타 안에서 열리셨으면 · <strong>우상단 ⋯</strong> 눌러서 · <br>"다른 브라우저에서 열기" 선택해주세요.
+  </div>
+
+  <div class="link">youtube.com/@hon2bee_kr</div>
+
+<script>
+(function() {
+  var CHANNEL_ID = "UCtMpHsXPa0E7c9tkGCupgUw";
+  var WEB_URL = "https://youtube.com/@hon2bee_kr";
+  var APP_URL_IOS = "youtube://www.youtube.com/channel/" + CHANNEL_ID;
+  var APP_URL_ANDROID_INTENT = "intent://www.youtube.com/channel/" + CHANNEL_ID +
+    "#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=" +
+    encodeURIComponent(WEB_URL) + ";end;";
+
+  var ua = navigator.userAgent.toLowerCase();
+  var isAndroid = /android/.test(ua);
+  var isIOS = /iphone|ipad|ipod/.test(ua);
+  var isKakao = /kakaotalk/.test(ua);
+  var isInstagram = /instagram/.test(ua);
+  var isNaver = /naver/.test(ua);
+  var isInApp = isKakao || isInstagram || isNaver;
+
+  // 데스크탑 · 바로 웹으로
+  if (!isAndroid && !isIOS) {
+    setTimeout(function() { window.location.replace(WEB_URL); }, 200);
+    return;
+  }
+
+  // 안드로이드 · intent:// 사용 (카톡 인앱에서도 작동)
+  if (isAndroid) {
+    setTimeout(function() {
+      window.location.href = APP_URL_ANDROID_INTENT;
+    }, 100);
+    // 실패 fallback · 3초
+    setTimeout(function() {
+      if (!document.hidden) window.location.replace(WEB_URL);
+    }, 3000);
+    return;
+  }
+
+  // iOS · youtube:// 시도
+  if (isIOS) {
+    // 카톡·인스타 인앱 · 자동 리다이렉트가 차단될 수 있음
+    // 첫 시도 · youtube:// 스킴
+    var tryOpenApp = function() {
+      var iframe = document.createElement("iframe");
+      iframe.style.display = "none";
+      iframe.src = APP_URL_IOS;
+      document.body.appendChild(iframe);
+      setTimeout(function() {
+        try { iframe.parentNode.removeChild(iframe); } catch(e) {}
+      }, 1000);
+    };
+    setTimeout(tryOpenApp, 100);
+    // 백업 · 3초 후 웹으로 (사용자가 여전히 페이지에 있으면)
+    setTimeout(function() {
+      if (!document.hidden) window.location.replace(WEB_URL);
+    }, 3000);
+    return;
+  }
+})();
+
+// 앱 버튼 · 사용자 탭 시 · 강제 시도
+document.getElementById("appBtn").addEventListener("click", function(e) {
+  var ua = navigator.userAgent.toLowerCase();
+  var isAndroid = /android/.test(ua);
+  var isIOS = /iphone|ipad|ipod/.test(ua);
+  var CHANNEL_ID = "UCtMpHsXPa0E7c9tkGCupgUw";
+  var WEB_URL = "https://youtube.com/@hon2bee_kr";
+
+  if (isAndroid) {
+    e.preventDefault();
+    window.location.href = "intent://www.youtube.com/channel/" + CHANNEL_ID +
+      "#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=" +
+      encodeURIComponent(WEB_URL) + ";end;";
+  } else if (isIOS) {
+    e.preventDefault();
+    window.location.href = "youtube://www.youtube.com/channel/" + CHANNEL_ID;
+    setTimeout(function() {
+      if (!document.hidden) window.location.replace(WEB_URL);
+    }, 2000);
+  }
+  // 데스크탑 · href 그대로
+});
+</script>
+</body>
+</html>
