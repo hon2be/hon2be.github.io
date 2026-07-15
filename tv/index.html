@@ -57,16 +57,17 @@
       어르신·왕초보의 첫걸음을 · 천천히 · 함께 배웁니다.
     </p>
     <a id="appBtn" href="https://youtube.com/@hon2bee_kr"
-       class="block w-full text-center px-5 py-3.5 bg-gold-500 hover:bg-gold-600 active:bg-gold-700 text-white text-sm font-semibold rounded-lg transition-colors">
-      이동하기 →
+       class="block w-full text-center px-5 py-5 bg-gold-500 hover:bg-gold-600 text-white text-lg font-bold rounded-xl shadow-lg shadow-gold-500/40 border-b-4 border-gold-700 active:border-b-0 active:translate-y-1 active:shadow-md transition-all">
+      <span class="inline-block mr-2">▶</span>유튜브 채널 열기
     </a>
+    <div class="text-center text-[11px] text-gray-400 mt-2">👆 위 버튼을 눌러주세요</div>
   </section>
 
   <!-- SECTION 2 · 최신 영상 2건 -->
   <section class="mb-10 pb-10 border-b border-gray-100">
     <div class="flex items-baseline justify-between mb-4">
       <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-500">최신 영상</h2>
-      <a href="https://youtube.com/@hon2bee_kr/videos" class="text-xs text-gold-600 hover:text-gold-700 font-medium">전체 →</a>
+      <a href="https://youtube.com/@hon2bee_kr/videos" data-yt="videos" class="text-xs text-gold-600 hover:text-gold-700 font-medium">전체 →</a>
     </div>
 
     <div class="space-y-5">
@@ -98,6 +99,19 @@
         <div class="text-[11px] text-gray-400 mt-2">AI 왕초보·시니어 강의 #7 · 6분 24초</div>
       </a>
     </div>
+  </section>
+
+  <!-- SECTION 2.5 · 강의 자료 -->
+  <section class="mb-10 pb-10 border-b border-gray-100">
+    <div class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-3">강의 자료</div>
+    <p class="text-sm text-gray-600 leading-relaxed mb-5">
+      영상에서 사용한 프롬프트·자료를 · 회차별로 정리한 사이트입니다.
+    </p>
+    <a href="https://hon2be.github.io/ai-video-course/"
+       class="block w-full text-center px-5 py-5 bg-white text-gold-700 text-lg font-bold rounded-xl shadow-md border-2 border-gold-500 border-b-4 active:border-b-2 active:translate-y-1 active:shadow-sm transition-all">
+      <span class="inline-block mr-2">📚</span>프롬프트·강의자료 열기
+    </a>
+    <div class="text-center text-[11px] text-gray-400 mt-2">👆 위 버튼을 눌러주세요</div>
   </section>
 
   <!-- SECTION 3 · GitHub 기여 -->
@@ -138,60 +152,101 @@
       카톡·인스타에서 열렸다면 · 우상단 <span class="font-mono">⋯</span> · 다른 브라우저에서 열기
     </div>
     <div class="flex justify-center gap-4 text-xs">
-      <a href="https://youtube.com/@hon2bee_kr" class="text-gray-500 hover:text-gold-600 font-mono">YouTube</a>
+      <a href="https://youtube.com/@hon2bee_kr" data-yt="channel" class="text-gray-500 hover:text-gold-600 font-mono">YouTube</a>
       <a href="https://github.com/hon2be" class="text-gray-500 hover:text-gold-600 font-mono">GitHub</a>
     </div>
   </footer>
 
 </main>
 
+<!-- Bottom Toast · 슬림 pill -->
+<div id="ytToast"
+     class="fixed left-1/2 -translate-x-1/2 opacity-0 translate-y-full transition-all duration-300 z-50 relative"
+     style="bottom:0.75rem; margin-bottom: env(safe-area-inset-bottom);">
+  <a id="ytToastBtn" href="https://youtube.com/@hon2bee_kr" data-yt="channel"
+     class="flex items-center gap-2 pl-4 pr-10 py-2.5 bg-gold-500 active:bg-gold-700 text-white rounded-full shadow-xl whitespace-nowrap text-sm font-semibold transition-colors">
+    <span class="text-base">▶</span>
+    <span>유튜브 앱으로 열기</span>
+  </a>
+  <button id="ytToastClose" type="button" aria-label="닫기"
+          class="absolute top-1/2 right-1 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded-full bg-white/25 active:bg-white/40 text-white text-xs">
+    ✕
+  </button>
+</div>
+
+
 <script>
 (function() {
   var CHANNEL_ID = "UCtMpHsXPa0E7c9tkGCupgUw";
   var WEB_URL = "https://youtube.com/@hon2bee_kr";
+  var ua = navigator.userAgent.toLowerCase();
+  var isAndroid = /android/.test(ua);
+  var isIOS = /iphone|ipad|ipod/.test(ua);
+  var isMobile = isAndroid || isIOS;
 
-  function openYouTube(vid) {
-    var ua = navigator.userAgent.toLowerCase();
-    var isAndroid = /android/.test(ua);
-    var isIOS = /iphone|ipad|ipod/.test(ua);
-    var target = vid ? ("watch?v=" + vid) : ("channel/" + CHANNEL_ID);
-    var fallback = vid ? ("https://youtu.be/" + vid) : WEB_URL;
+  function parseTarget(href, hint, vid) {
+    if (vid) return { path: "watch?v=" + vid, fallback: "https://youtu.be/" + vid };
+    if (hint === "videos") return { path: "channel/" + CHANNEL_ID + "/videos", fallback: "https://youtube.com/@hon2bee_kr/videos" };
+    if (hint === "channel") return { path: "channel/" + CHANNEL_ID, fallback: WEB_URL };
+    var m = href.match(/youtu\.be\/([\w-]+)/) || href.match(/[?&]v=([\w-]+)/);
+    if (m) return { path: "watch?v=" + m[1], fallback: "https://youtu.be/" + m[1] };
+    if (/youtube\.com\/@[\w-]+\/videos/.test(href)) return { path: "channel/" + CHANNEL_ID + "/videos", fallback: href };
+    if (/youtube\.com\/(@[\w-]+|channel\/)/.test(href)) return { path: "channel/" + CHANNEL_ID, fallback: WEB_URL };
+    return null;
+  }
+
+  function openApp(t) {
     if (isAndroid) {
-      window.location.href = "intent://www.youtube.com/" + target +
+      window.location.href = "intent://www.youtube.com/" + t.path +
         "#Intent;scheme=https;package=com.google.android.youtube;S.browser_fallback_url=" +
-        encodeURIComponent(fallback) + ";end;";
-      setTimeout(function() { if (!document.hidden) window.location.replace(fallback); }, 3000);
+        encodeURIComponent(t.fallback) + ";end;";
+      setTimeout(function() { if (!document.hidden) window.location.replace(t.fallback); }, 3000);
     } else if (isIOS) {
       var iframe = document.createElement("iframe");
       iframe.style.display = "none";
-      iframe.src = "youtube://www.youtube.com/" + target;
+      iframe.src = "youtube://www.youtube.com/" + t.path;
       document.body.appendChild(iframe);
       setTimeout(function() {
         try { iframe.remove(); } catch(e) {}
-        if (!document.hidden) window.location.replace(fallback);
+        if (!document.hidden) window.location.replace(t.fallback);
       }, 2000);
-    } else {
-      window.location.href = fallback;
     }
   }
 
-  document.querySelectorAll(".video").forEach(function(card) {
-    card.addEventListener("click", function(e) {
-      var ua = navigator.userAgent.toLowerCase();
-      if (/android|iphone|ipad|ipod/.test(ua)) {
-        e.preventDefault();
-        openYouTube(card.getAttribute("data-id"));
-      }
+  function isYouTubeLink(a) {
+    var h = a.getAttribute("href") || "";
+    return /youtube\.com|youtu\.be/.test(h) || a.hasAttribute("data-yt") || a.hasAttribute("data-id");
+  }
+
+  document.querySelectorAll("a").forEach(function(a) {
+    if (!isYouTubeLink(a)) return;
+    a.addEventListener("click", function(e) {
+      if (!isMobile) return;
+      var t = parseTarget(a.getAttribute("href") || "", a.getAttribute("data-yt"), a.getAttribute("data-id"));
+      if (!t) return;
+      e.preventDefault();
+      openApp(t);
     });
   });
 
-  document.getElementById("appBtn").addEventListener("click", function(e) {
-    var ua = navigator.userAgent.toLowerCase();
-    if (/android|iphone|ipad|ipod/.test(ua)) {
+  // Bottom toast · 즉시 슬라이드업
+  var toast = document.getElementById("ytToast");
+  var toastClose = document.getElementById("ytToastClose");
+  if (toast && !sessionStorage.getItem("ytToastDismissed")) {
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        toast.classList.remove("opacity-0", "translate-y-full");
+      });
+    });
+    toastClose.addEventListener("click", function(e) {
       e.preventDefault();
-      openYouTube();
-    }
-  });
+      e.stopPropagation();
+      toast.classList.add("opacity-0", "translate-y-full");
+      sessionStorage.setItem("ytToastDismissed", "1");
+    });
+  } else if (toast) {
+    toast.remove();
+  }
 })();
 </script>
 </body>
