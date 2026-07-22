@@ -2,178 +2,374 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI독학꿀벌 (구 허니비TV)</title>
-<meta name="description" content="AI·컴퓨터 왕초보·시니어 유튜브 채널">
-<meta name="theme-color" content="#ffffff">
-<meta property="og:title" content="AI독학꿀벌 (구 허니비TV)">
-<meta property="og:description" content="AI·컴퓨터 왕초보·시니어를 위한 유튜브 채널 · 오픈소스 프로젝트">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AI독학꿀벌 (구 허니비TV) · 왕초보 시니어 무료 AI 강의</title>
+<meta name="description" content="AI·컴퓨터가 처음이신 왕초보·어르신을 위한 유튜브 채널 · 챗지피티·클로드·미드저니를 화·목 저녁 8시에 무료로 · 하나씩 · 천천히">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="AI독학꿀벌 (구 허니비TV) · 왕초보 시니어 무료 AI 강의">
+<meta property="og:description" content="AI·컴퓨터 왕초보 어르신을 위한 무료 유튜브 채널">
+<meta property="og:image" content="https://hon2be.github.io/tv/mascot.png">
 <meta property="og:type" content="website">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          gold: {
-            50:  '#fdf9ee',
-            100: '#faf1d0',
-            200: '#f4e19b',
-            300: '#eecd63',
-            400: '#e8b93c',
-            500: '#d4a017',
-            600: '#b8860b',
-            700: '#946a09',
-            800: '#79570d',
-            900: '#664810',
-          }
-        },
-        fontFamily: {
-          sans: ['-apple-system', 'BlinkMacSystemFont', 'Pretendard', 'Noto Sans KR', 'Segoe UI', 'sans-serif'],
-        }
-      }
-    }
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --sky:   #38BDF8;
+    --yellow:#FACC15;
+
+    /* 3 sizes only */
+    --t-lg: 32px;
+    --t-md: 24px;
+    --t-sm: 16px;
+
+    /* 3 weights only */
+    --w-black: 900;
+    --w-medium: 500;
+    --w-thin: 100;
   }
-</script>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--black); color: var(--white); }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    min-height: 100vh;
+    font-size: var(--t-sm);
+    font-weight: var(--w-medium);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  button { font-family: inherit; }
+
+  /* ==== Top sticky flow bar (brand + YouTube CTA) ==== */
+  .topbar {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .topbar-inner {
+    max-width: 1120px; margin: 0 auto;
+    padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  @media (min-width: 900px) { .topbar-inner { padding: 14px 40px; } }
+  .brand {
+    display: flex; align-items: center; gap: 8px;
+    font-size: var(--t-sm); font-weight: var(--w-black);
+    letter-spacing: -0.02em;
+    min-width: 0;
+  }
+  .brand .logo { font-size: var(--t-md); line-height: 1; }
+  .brand .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .brand small { font-weight: var(--w-thin); opacity: 0.55; margin-left: 4px; }
+  @media (min-width: 640px) { .brand { font-size: var(--t-md); } }
+
+  .topbar-cta {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--yellow); color: var(--black);
+    padding: 10px 18px; border-radius: 999px;
+    font-size: var(--t-sm); font-weight: var(--w-black);
+    letter-spacing: -0.01em;
+    box-shadow: 0 8px 20px rgba(250,204,21,0.28);
+    transition: transform 0.15s;
+  }
+  .topbar-cta:active { transform: scale(0.96); }
+  .topbar-cta .play {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--black); color: var(--yellow);
+    font-size: 10px;
+  }
+
+  /* ==== Container ==== */
+  .container { max-width: 1120px; margin: 0 auto; padding: 32px 20px 96px; }
+  @media (min-width: 900px) { .container { padding: 56px 40px 120px; } }
+
+  /* ==== Hero ==== */
+  .hero { display: grid; gap: 32px; align-items: center; margin-bottom: 72px; }
+  @media (min-width: 900px) {
+    .hero { grid-template-columns: 1.1fr 1fr; gap: 72px; margin-bottom: 120px; }
+    .hero .copy { order: -1; }
+  }
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 280px;
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-visual::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(250,204,21,0.35) 0%, rgba(250,204,21,0) 62%);
+  }
+  .hero-visual img { position: relative; width: 92%; filter: drop-shadow(0 24px 40px rgba(250,204,21,0.25)); }
+  @media (min-width: 900px) { .hero-visual { max-width: 420px; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border: 1px solid var(--sky); border-radius: 999px;
+    font-size: var(--t-sm); font-weight: var(--w-medium);
+    color: var(--sky); letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sky); }
+
+  .hero h1 {
+    font-size: var(--t-lg); font-weight: var(--w-black);
+    letter-spacing: -0.035em; line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .hero h1 .yellow { color: var(--yellow); }
+  .hero-sub {
+    font-size: var(--t-sm); font-weight: var(--w-medium);
+    color: var(--sky); margin-bottom: 16px; letter-spacing: 0;
+  }
+  .hero-lead {
+    font-size: var(--t-sm); font-weight: var(--w-medium);
+    opacity: 0.72; line-height: 1.7;
+  }
+
+  /* ==== 뭐 하는 곳 · 3 카드 ==== */
+  .what { display: grid; gap: 14px; margin-bottom: 72px; }
+  @media (min-width: 900px) { .what { grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 120px; } }
+  .what-card {
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 20px; padding: 24px;
+    background: rgba(255,255,255,0.02);
+  }
+  .what-card .ico {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--sky); color: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    font-size: var(--t-md);
+    margin-bottom: 18px;
+  }
+  .what-card.y .ico { background: var(--yellow); }
+  .what-card h3 {
+    font-size: var(--t-md); font-weight: var(--w-black);
+    letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .what-card p { font-size: var(--t-sm); font-weight: var(--w-medium); opacity: 0.68; line-height: 1.65; }
+
+  /* ==== Sections ==== */
+  .section { margin-bottom: 72px; }
+  @media (min-width: 900px) { .section { margin-bottom: 120px; } }
+  .section-h {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .section-h h2 {
+    font-size: var(--t-md); font-weight: var(--w-black);
+    letter-spacing: -0.02em;
+  }
+  .section-h a { font-size: var(--t-sm); font-weight: var(--w-medium); color: var(--sky); }
+
+  /* ==== Videos ==== */
+  .videos { display: grid; gap: 24px; }
+  @media (min-width: 900px) { .videos { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .video-card { display: block; }
+  .video-thumb {
+    position: relative; aspect-ratio: 16 / 9;
+    border-radius: 14px; overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    margin-bottom: 14px;
+  }
+  .video-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .video-thumb .dur {
+    position: absolute; right: 8px; bottom: 8px;
+    background: var(--black); color: var(--white);
+    font-size: var(--t-sm); font-weight: var(--w-medium);
+    padding: 3px 10px; border-radius: 6px;
+  }
+  .video-card h4 {
+    font-size: var(--t-md); font-weight: var(--w-black);
+    letter-spacing: -0.02em; line-height: 1.35;
+    margin-bottom: 8px;
+  }
+  .video-card p { font-size: var(--t-sm); font-weight: var(--w-medium); opacity: 0.6; line-height: 1.65; }
+  .video-card .meta {
+    font-size: var(--t-sm); font-weight: var(--w-medium);
+    color: var(--sky); margin-top: 10px;
+  }
+
+  /* ==== 강의 자료 CTA · sky border card ==== */
+  .study {
+    border: 1.5px solid var(--sky); border-radius: 20px;
+    padding: 22px 24px;
+    background: rgba(56,189,248,0.06);
+    display: flex; align-items: center; gap: 18px;
+    transition: transform 0.15s;
+  }
+  .study:active { transform: scale(0.99); }
+  .study .em { font-size: var(--t-lg); line-height: 1; }
+  .study .txt { flex: 1; min-width: 0; }
+  .study h3 { font-size: var(--t-md); font-weight: var(--w-black); color: var(--sky); margin-bottom: 4px; letter-spacing: -0.02em; }
+  .study p { font-size: var(--t-sm); font-weight: var(--w-medium); opacity: 0.72; }
+  .study .go { color: var(--sky); font-weight: var(--w-black); font-size: var(--t-md); }
+
+  /* ==== GitHub ==== */
+  .gh { display: grid; gap: 12px; }
+  @media (min-width: 900px) { .gh { grid-template-columns: 1fr 1fr; gap: 16px; } }
+  .gh a {
+    display: block;
+    padding: 16px 18px; border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.02);
+  }
+  .gh .name {
+    font-size: var(--t-sm); font-weight: var(--w-black);
+    letter-spacing: -0.01em; margin-bottom: 4px;
+  }
+  .gh .name .lang {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--t-sm); font-weight: var(--w-thin);
+    color: var(--sky); margin-left: 6px; letter-spacing: 0;
+  }
+  .gh .desc { font-size: var(--t-sm); font-weight: var(--w-medium); opacity: 0.6; line-height: 1.55; }
+
+  /* ==== Footer ==== */
+  footer {
+    text-align: center; padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    font-size: var(--t-sm); font-weight: var(--w-thin);
+    opacity: 0.55; line-height: 1.8;
+  }
+  footer a { color: var(--sky); font-weight: var(--w-medium); }
+</style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
-<main class="max-w-md mx-auto px-5 py-8">
+<body>
 
-  <!-- Header · 작게 -->
-  <header class="flex items-center justify-between mb-8">
-    <div class="text-lg font-bold tracking-tight">honeybee</div>
-    <div class="text-xs text-gray-400 font-mono">@hon2bee_kr</div>
-  </header>
-
-  <!-- SECTION 1 · 채널 설명 + 이동하기 -->
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <div class="text-xs font-semibold uppercase tracking-widest text-gold-600 mb-3">AI독학꿀벌 <span class="text-gold-500 font-medium normal-case tracking-normal">(구 허니비TV)</span></div>
-    <h1 class="text-2xl font-bold tracking-tight leading-tight mb-3">
-      AI·컴퓨터 왕초보<br>
-      <span class="text-gold-600">시니어를 위한</span> 채널
-    </h1>
-    <p class="text-sm text-gray-600 leading-relaxed mb-6">
-      챗지피티·클로드·미드저니 · 마우스·트랙패드까지.
-      어르신·왕초보의 첫걸음을 · 천천히 · 함께 배웁니다.
-    </p>
-    <a id="appBtn" href="https://youtube.com/@hon2bee_kr"
-       class="block w-full text-center px-5 py-5 bg-gold-500 hover:bg-gold-600 text-white text-lg font-bold rounded-xl shadow-lg shadow-gold-500/40 border-b-4 border-gold-700 active:border-b-0 active:translate-y-1 active:shadow-md transition-all">
-      <span class="inline-block mr-2">▶</span>유튜브 채널 열기
+<!-- Sticky top flow bar · brand + YouTube CTA -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="logo">🍯</span>
+      <span class="name">AI독학꿀벌 <small>(구 허니비TV)</small></span>
+    </div>
+    <a id="appBtn" class="topbar-cta" href="https://youtube.com/@hon2bee_kr" data-yt="channel">
+      <span class="play">▶</span> 유튜브 보기
     </a>
-    <div class="text-center text-[11px] text-gray-400 mt-2">👆 위 버튼을 눌러주세요</div>
-  </section>
+  </div>
+</header>
 
-  <!-- SECTION 2 · 최신 영상 2건 -->
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <div class="flex items-baseline justify-between mb-4">
-      <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-500">최신 영상</h2>
-      <a href="https://youtube.com/@hon2bee_kr/videos" data-yt="videos" class="text-xs text-gold-600 hover:text-gold-700 font-medium">전체 →</a>
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="copy">
+      <div class="eyebrow">왕초보·시니어 무료 유튜브 채널</div>
+      <h1>
+        AI·컴퓨터가<br>
+        <span class="yellow">처음이신 분</span>을 위한<br>
+        무료 강의
+      </h1>
+      <div class="hero-sub">화·목 저녁 8시 · 챗지피티·클로드·미드저니</div>
+      <p class="hero-lead">
+        어려운 말은 걷어내고 · 화면에 뭐가 나올지 하나씩 · 천천히.
+        머리로 이해가 안 되면 · 다시 봐도 되게 · 반복 학습이 가능한 무료 강의 채널.
+      </p>
     </div>
-
-    <div class="space-y-5">
-      <a href="https://youtu.be/m_1VpcBIjl4" data-id="m_1VpcBIjl4" class="video block group">
-        <div class="relative aspect-video rounded-lg overflow-hidden bg-gray-100 mb-3">
-          <img src="https://i.ytimg.com/vi/m_1VpcBIjl4/mqdefault.jpg" alt="" class="w-full h-full object-cover">
-          <span class="absolute right-2 bottom-2 bg-black/85 text-white text-[11px] font-medium px-1.5 py-0.5 rounded">6:44</span>
-        </div>
-        <div class="text-sm font-semibold leading-snug group-hover:text-gold-700 transition-colors mb-1">
-          AI 요금제 · 자동차 사듯이
-        </div>
-        <div class="text-xs text-gray-500 leading-relaxed">
-          챗지피티·클로드·제미나이 3사 요금제를 자동차에 비유해 정리. 어떤 걸 골라야 할지 · 6분에 끝냅니다.
-        </div>
-        <div class="text-[11px] text-gray-400 mt-2">AI 왕초보·시니어 강의 #8 · 6분 44초</div>
-      </a>
-
-      <a href="https://youtu.be/vL7JWTmMWEk" data-id="vL7JWTmMWEk" class="video block group">
-        <div class="relative aspect-video rounded-lg overflow-hidden bg-gray-100 mb-3">
-          <img src="https://i.ytimg.com/vi/vL7JWTmMWEk/mqdefault.jpg" alt="" class="w-full h-full object-cover">
-          <span class="absolute right-2 bottom-2 bg-black/85 text-white text-[11px] font-medium px-1.5 py-0.5 rounded">6:24</span>
-        </div>
-        <div class="text-sm font-semibold leading-snug group-hover:text-gold-700 transition-colors mb-1">
-          챗지피티는 그만 · 이제는 클로드로
-        </div>
-        <div class="text-xs text-gray-500 leading-relaxed">
-          Claude로 · 30분에 블로그 한 편 완성하는 실전 흐름. 프롬프트·수정·발행까지 · 한 번에.
-        </div>
-        <div class="text-[11px] text-gray-400 mt-2">AI 왕초보·시니어 강의 #7 · 6분 24초</div>
-      </a>
+    <div class="hero-visual">
+      <img src="mascot.png" alt="AI독학꿀벌 마스코트" width="512" height="512">
     </div>
   </section>
 
-  <!-- SECTION 2.5 · 강의 자료 -->
-  <section class="mb-10 pb-10 border-b border-gray-100">
-    <div class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-3">강의 자료</div>
-    <p class="text-sm text-gray-600 leading-relaxed mb-5">
-      영상에서 사용한 프롬프트·자료를 · 회차별로 정리한 사이트입니다.
-    </p>
-    <a href="https://hon2be.github.io/ai-video-course/"
-       class="block w-full text-center px-5 py-5 bg-white text-gold-700 text-lg font-bold rounded-xl shadow-md border-2 border-gold-500 border-b-4 active:border-b-2 active:translate-y-1 active:shadow-sm transition-all">
-      <span class="inline-block mr-2">📚</span>프롬프트·강의자료 열기
+  <!-- 뭐 하는 곳 -->
+  <section class="what">
+    <div class="what-card">
+      <div class="ico">👴</div>
+      <h3>왕초보·시니어 전용</h3>
+      <p>마우스·트랙패드부터 챗지피티까지. 아무것도 몰라도 시작 가능.</p>
+    </div>
+    <div class="what-card y">
+      <div class="ico">🎁</div>
+      <h3>전부 무료</h3>
+      <p>결제·회원가입 없이 · 유튜브에서 바로. 강의 자료 사이트도 무료 공개.</p>
+    </div>
+    <div class="what-card">
+      <div class="ico">📅</div>
+      <h3>정기 업로드</h3>
+      <p>화·목 저녁 8시 정규 · 컴맹탈출 시리즈 아침 10시. 놓쳐도 다시 보기 가능.</p>
+    </div>
+  </section>
+
+  <!-- 최신 영상 -->
+  <section class="section">
+    <div class="section-h">
+      <h2>최신 영상</h2>
+      <a href="https://youtube.com/@hon2bee_kr/videos" data-yt="videos">전체 →</a>
+    </div>
+    <div class="videos">
+      <a href="https://youtu.be/m_1VpcBIjl4" data-id="m_1VpcBIjl4" class="video video-card">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/m_1VpcBIjl4/mqdefault.jpg" alt="">
+          <span class="dur">6:44</span>
+        </div>
+        <h4>AI 요금제 · 자동차 사듯이</h4>
+        <p>챗지피티·클로드·제미나이 3사 요금제를 자동차에 비유해 정리 · 어떤 걸 골라야 할지 6분에.</p>
+        <div class="meta">AI 왕초보·시니어 강의 #8</div>
+      </a>
+
+      <a href="https://youtu.be/vL7JWTmMWEk" data-id="vL7JWTmMWEk" class="video video-card">
+        <div class="video-thumb">
+          <img src="https://i.ytimg.com/vi/vL7JWTmMWEk/mqdefault.jpg" alt="">
+          <span class="dur">6:24</span>
+        </div>
+        <h4>챗지피티는 그만 · 이제는 클로드로</h4>
+        <p>Claude로 30분에 블로그 한 편 완성하는 실전 흐름 · 프롬프트·수정·발행까지 한 번에.</p>
+        <div class="meta">AI 왕초보·시니어 강의 #7</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 강의 자료 -->
+  <section class="section">
+    <div class="section-h">
+      <h2>강의 자료</h2>
+    </div>
+    <a class="study" href="https://hon2be.github.io/ai-video-course/">
+      <div class="em">📚</div>
+      <div class="txt">
+        <h3>영상에 나온 프롬프트·자료</h3>
+        <p>회차별로 복붙해서 쓸 수 있게 정리 · 완전 무료</p>
+      </div>
+      <div class="go">→</div>
     </a>
-    <div class="text-center text-[11px] text-gray-400 mt-2">👆 위 버튼을 눌러주세요</div>
   </section>
 
-  <!-- SECTION 3 · GitHub 기여 -->
-  <section class="mb-10">
-    <div class="flex items-baseline justify-between mb-4">
-      <h2 class="text-xs font-semibold uppercase tracking-widest text-gray-500">GitHub 오픈소스</h2>
-      <a href="https://github.com/hon2be" class="text-xs text-gold-600 hover:text-gold-700 font-medium">전체 →</a>
+  <!-- GitHub -->
+  <section class="section">
+    <div class="section-h">
+      <h2>GitHub 오픈소스</h2>
+      <a href="https://github.com/hon2be">전체 →</a>
     </div>
-
-    <div class="space-y-3">
-
-      <a href="https://github.com/hon2be/k-novice-ui-kit" class="block group p-3 -mx-3 rounded-lg hover:bg-gold-50 transition-colors">
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-sm font-semibold group-hover:text-gold-700">k-novice-ui-kit</span>
-          <span class="text-[10px] font-mono text-gray-400">TypeScript</span>
-        </div>
-        <div class="text-xs text-gray-500 leading-relaxed">
-          Remotion 튜토리얼 · 어르신·왕초보용 UI 컴포넌트 킷. 큰 버튼·손가락 탭·설명 말풍선·폰 프레임·자막.
-        </div>
+    <div class="gh">
+      <a href="https://github.com/hon2be/k-novice-ui-kit">
+        <div class="name">k-novice-ui-kit <span class="lang">TypeScript</span></div>
+        <div class="desc">Remotion 튜토리얼 · 어르신·왕초보 UI 목업 컴포넌트 (버튼·손가락 탭·자막·PIP)</div>
       </a>
-
-      <a href="https://github.com/NomaDamas/k-skill" class="block group p-3 -mx-3 rounded-lg hover:bg-gold-50 transition-colors">
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-sm font-semibold group-hover:text-gold-700">NomaDamas/k-skill</span>
-          <span class="text-[10px] font-mono text-gray-400">JavaScript · ★6.1k</span>
-        </div>
-        <div class="text-xs text-gray-500 leading-relaxed">
-          한국인을 위한 스킬 모음 · SRT·KTX·카톡·한컴·날씨·미세먼지·법령·주식·특허·맞춤법 등.
-        </div>
+      <a href="https://github.com/NomaDamas/k-skill">
+        <div class="name">NomaDamas/k-skill <span class="lang">JS · ★6.1k</span></div>
+        <div class="desc">한국인용 스킬 모음 · SRT·KTX·카톡·한컴·날씨·법령·특허·맞춤법</div>
       </a>
-
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="pt-6 border-t border-gray-100 text-center">
-    <div class="text-[11px] text-gray-400 leading-relaxed mb-3">
-      카톡·인스타에서 열렸다면 · 우상단 <span class="font-mono">⋯</span> · 다른 브라우저에서 열기
-    </div>
-    <div class="flex justify-center gap-4 text-xs">
-      <a href="https://youtube.com/@hon2bee_kr" data-yt="channel" class="text-gray-500 hover:text-gold-600 font-mono">YouTube</a>
-      <a href="https://github.com/hon2be" class="text-gray-500 hover:text-gold-600 font-mono">GitHub</a>
-    </div>
+  <footer>
+    카톡·인스타에서 열렸다면 · 우상단 ⋯ · 다른 브라우저에서 열기<br>
+    <a href="https://youtube.com/@hon2bee_kr" data-yt="channel">YouTube</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/hon2be">GitHub</a>
   </footer>
 
 </main>
-
-<!-- Bottom Toast · 슬림 pill -->
-<div id="ytToast"
-     class="fixed left-1/2 -translate-x-1/2 opacity-0 translate-y-full transition-all duration-300 z-50 relative"
-     style="bottom:0.75rem; margin-bottom: env(safe-area-inset-bottom);">
-  <a id="ytToastBtn" href="https://youtube.com/@hon2bee_kr" data-yt="channel"
-     class="flex items-center gap-2 pl-4 pr-10 py-2.5 bg-gold-500 active:bg-gold-700 text-white rounded-full shadow-xl whitespace-nowrap text-sm font-semibold transition-colors">
-    <span class="text-base">▶</span>
-    <span>유튜브 앱으로 열기</span>
-  </a>
-  <button id="ytToastClose" type="button" aria-label="닫기"
-          class="absolute top-1/2 right-1 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded-full bg-white/25 active:bg-white/40 text-white text-xs">
-    ✕
-  </button>
-</div>
-
 
 <script>
 (function() {
@@ -228,25 +424,6 @@
       openApp(t);
     });
   });
-
-  // Bottom toast · 즉시 슬라이드업
-  var toast = document.getElementById("ytToast");
-  var toastClose = document.getElementById("ytToastClose");
-  if (toast && !sessionStorage.getItem("ytToastDismissed")) {
-    requestAnimationFrame(function() {
-      requestAnimationFrame(function() {
-        toast.classList.remove("opacity-0", "translate-y-full");
-      });
-    });
-    toastClose.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      toast.classList.add("opacity-0", "translate-y-full");
-      sessionStorage.setItem("ytToastDismissed", "1");
-    });
-  } else if (toast) {
-    toast.remove();
-  }
 })();
 </script>
 </body>
