@@ -8,10 +8,11 @@
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="AI독학꿀벌 (구 허니비TV) · 왕초보 시니어 무료 AI 강의">
 <meta property="og:description" content="AI·컴퓨터 왕초보 어르신을 위한 무료 유튜브 채널">
-<meta property="og:image" content="https://hon2be.github.io/tv/mascot.png">
+<meta property="og:image" content="https://i.ytimg.com/vi/m_1VpcBIjl4/maxresdefault.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/icons/css/all.min.css">
 <style>
   :root {
     --black: #000000;
@@ -60,14 +61,16 @@
   }
   @media (min-width: 900px) { .topbar-inner { padding: 14px 40px; } }
   .brand {
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 10px;
     font-size: var(--t-sm); font-weight: var(--w-black);
     letter-spacing: -0.02em;
     min-width: 0;
   }
-  .brand .logo { font-size: var(--t-md); line-height: 1; }
+  .brand-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--yellow); flex-shrink: 0;
+  }
   .brand .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .brand small { font-weight: var(--w-thin); opacity: 0.55; margin-left: 4px; }
   @media (min-width: 640px) { .brand { font-size: var(--t-md); } }
 
   .topbar-cta {
@@ -81,36 +84,65 @@
     transition: transform 0.15s;
   }
   .topbar-cta:active { transform: scale(0.96); }
-  .topbar-cta .play {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: var(--black); color: var(--yellow);
-    font-size: 10px;
-  }
+  .topbar-cta i { font-size: var(--t-sm); line-height: 1; }
 
   /* ==== Container ==== */
   .container { max-width: 1120px; margin: 0 auto; padding: 32px 20px 96px; }
   @media (min-width: 900px) { .container { padding: 56px 40px 120px; } }
 
   /* ==== Hero ==== */
-  .hero { display: grid; gap: 32px; align-items: center; margin-bottom: 72px; }
-  @media (min-width: 900px) {
-    .hero { grid-template-columns: 1.1fr 1fr; gap: 72px; margin-bottom: 120px; }
-    .hero .copy { order: -1; }
+  .hero { display: flex; flex-direction: column; gap: 32px; margin-bottom: 72px; }
+  @media (min-width: 900px) { .hero { gap: 48px; margin-bottom: 120px; } }
+  .hero .copy { max-width: 860px; }
+
+  /* Use-case tag grid — AI로 뭘 할 수 있는지 즉시 보이게 */
+  .use-grid {
+    margin-top: 28px;
+    display: grid; gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
   }
-  .hero-visual {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    max-width: 280px;
-    margin: 0 auto;
+  @media (min-width: 640px) { .use-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 900px) { .use-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+  .use {
     display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 14px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.03);
+    color: rgba(255,255,255,0.72);
+    font-size: var(--t-sm); font-weight: var(--w-black);
+    letter-spacing: -0.02em; line-height: 1.3;
   }
-  .hero-visual::before {
-    content: ""; position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(250,204,21,0.35) 0%, rgba(250,204,21,0) 62%);
+
+  .hero-cast {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    align-items: end; justify-items: center;
+    gap: 8px;
+    width: 100%;
   }
-  .hero-visual img { position: relative; width: 92%; filter: drop-shadow(0 24px 40px rgba(250,204,21,0.25)); }
-  @media (min-width: 900px) { .hero-visual { max-width: 420px; } }
+  @media (min-width: 900px) { .hero-cast { gap: 20px; } }
+  .hero-cast .cast {
+    position: relative; width: 100%;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .hero-cast img {
+    width: 100%; height: auto; object-fit: contain;
+    filter: drop-shadow(0 16px 28px rgba(0,0,0,0.45));
+  }
+  .hero-cast .tag {
+    margin-top: 12px;
+    font-size: var(--t-sm); font-weight: var(--w-black);
+    letter-spacing: -0.01em;
+    color: var(--white);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 5px 12px; border-radius: 999px;
+    white-space: nowrap;
+  }
+  .hero-cast .cast:nth-child(1) .tag { color: var(--sky); border-color: var(--sky); }
+  .hero-cast .cast:nth-child(2) .tag { color: var(--yellow); border-color: var(--yellow); }
+  .hero-cast .cast:nth-child(3) .tag { color: var(--white); border-color: rgba(255,255,255,0.4); }
 
   .eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
@@ -144,14 +176,13 @@
     border-radius: 20px; padding: 24px;
     background: rgba(255,255,255,0.02);
   }
-  .what-card .ico {
-    width: 44px; height: 44px; border-radius: 12px;
-    background: var(--sky); color: var(--black);
-    display: flex; align-items: center; justify-content: center;
-    font-size: var(--t-md);
+  .what-card .num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: var(--t-sm); font-weight: var(--w-black);
+    color: var(--sky); letter-spacing: 0.05em;
     margin-bottom: 18px;
   }
-  .what-card.y .ico { background: var(--yellow); }
+  .what-card.y .num { color: var(--yellow); }
   .what-card h3 {
     font-size: var(--t-md); font-weight: var(--w-black);
     letter-spacing: -0.02em; margin-bottom: 8px;
@@ -173,7 +204,8 @@
 
   /* ==== Videos ==== */
   .videos { display: grid; gap: 24px; }
-  @media (min-width: 900px) { .videos { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  @media (min-width: 640px) { .videos { grid-template-columns: 1fr 1fr; gap: 28px; } }
+  @media (min-width: 900px) { .videos { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
   .video-card { display: block; }
   .video-thumb {
     position: relative; aspect-ratio: 16 / 9;
@@ -250,11 +282,11 @@
 <header class="topbar">
   <div class="topbar-inner">
     <div class="brand">
-      <span class="logo">🍯</span>
-      <span class="name">AI독학꿀벌 <small>(구 허니비TV)</small></span>
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="name">AI독학꿀벌</span>
     </div>
     <a id="appBtn" class="topbar-cta" href="https://youtube.com/@hon2bee_kr" data-yt="channel">
-      <span class="play">▶</span> 유튜브 보기
+      <i class="cil-media-play" aria-hidden="true"></i> 무료강의 보러가기
     </a>
   </div>
 </header>
@@ -264,66 +296,57 @@
   <!-- HERO -->
   <section class="hero">
     <div class="copy">
-      <div class="eyebrow">왕초보·시니어 무료 유튜브 채널</div>
+      <div class="eyebrow">자영업자·왕초보·시니어 무료 채널</div>
       <h1>
-        AI·컴퓨터가<br>
-        <span class="yellow">처음이신 분</span>을 위한<br>
-        무료 강의
+        이런 걸<br>
+        <span class="yellow">직접 하실 수 있게</span> 됩니다
       </h1>
-      <div class="hero-sub">화·목 저녁 8시 · 챗지피티·클로드·미드저니</div>
-      <p class="hero-lead">
-        어려운 말은 걷어내고 · 화면에 뭐가 나올지 하나씩 · 천천히.
-        머리로 이해가 안 되면 · 다시 봐도 되게 · 반복 학습이 가능한 무료 강의 채널.
-      </p>
-    </div>
-    <div class="hero-visual">
-      <img src="mascot.png" alt="AI독학꿀벌 마스코트" width="512" height="512">
+      <div class="hero-sub">AI 3개면 · 반나절이 남습니다</div>
+      <div class="use-grid">
+        <span class="use">쇼츠·릴스 만들기</span>
+        <span class="use">작곡·BGM</span>
+        <span class="use">업무 자동화</span>
+        <span class="use">블로그·글쓰기</span>
+        <span class="use">가게 홍보물</span>
+        <span class="use">이미지·그림·이모티콘</span>
+        <span class="use">서류·세무·법령</span>
+        <span class="use">코딩 없이 앱 만들기</span>
+      </div>
     </div>
   </section>
 
   <!-- 뭐 하는 곳 -->
   <section class="what">
     <div class="what-card">
-      <div class="ico">👴</div>
+      <div class="num">01</div>
       <h3>왕초보·시니어 전용</h3>
       <p>마우스·트랙패드부터 챗지피티까지. 아무것도 몰라도 시작 가능.</p>
     </div>
     <div class="what-card y">
-      <div class="ico">🎁</div>
+      <div class="num">02</div>
       <h3>전부 무료</h3>
       <p>결제·회원가입 없이 · 유튜브에서 바로. 강의 자료 사이트도 무료 공개.</p>
     </div>
     <div class="what-card">
-      <div class="ico">📅</div>
+      <div class="num">03</div>
       <h3>정기 업로드</h3>
       <p>화·목 저녁 8시 정규 · 컴맹탈출 시리즈 아침 10시. 놓쳐도 다시 보기 가능.</p>
     </div>
   </section>
 
-  <!-- 최신 영상 -->
+  <!-- 최신 영상 · RSS 동적 로딩 · 실패 시 fallback -->
   <section class="section">
     <div class="section-h">
       <h2>최신 영상</h2>
-      <a href="https://youtube.com/@hon2bee_kr/videos" data-yt="videos">전체 →</a>
+      <a href="https://youtube.com/@hon2bee_kr/videos" data-yt="videos">전체 <i class="cil-arrow-right" aria-hidden="true"></i></a>
     </div>
-    <div class="videos">
-      <a href="https://youtu.be/m_1VpcBIjl4" data-id="m_1VpcBIjl4" class="video video-card">
-        <div class="video-thumb">
-          <img src="https://i.ytimg.com/vi/m_1VpcBIjl4/mqdefault.jpg" alt="">
-          <span class="dur">6:44</span>
-        </div>
-        <h4>AI 요금제 · 자동차 사듯이</h4>
-        <p>챗지피티·클로드·제미나이 3사 요금제를 자동차에 비유해 정리 · 어떤 걸 골라야 할지 6분에.</p>
-        <div class="meta">AI 왕초보·시니어 강의 #8</div>
-      </a>
-
+    <div class="videos" id="videos">
+      <!-- fallback 카드 · 스크립트가 성공하면 대체됨 -->
       <a href="https://youtu.be/vL7JWTmMWEk" data-id="vL7JWTmMWEk" class="video video-card">
         <div class="video-thumb">
-          <img src="https://i.ytimg.com/vi/vL7JWTmMWEk/mqdefault.jpg" alt="">
-          <span class="dur">6:24</span>
+          <img src="https://i.ytimg.com/vi/vL7JWTmMWEk/mqdefault.jpg" alt="" loading="lazy" decoding="async">
         </div>
         <h4>챗지피티는 그만 · 이제는 클로드로</h4>
-        <p>Claude로 30분에 블로그 한 편 완성하는 실전 흐름 · 프롬프트·수정·발행까지 한 번에.</p>
         <div class="meta">AI 왕초보·시니어 강의 #7</div>
       </a>
     </div>
@@ -335,12 +358,12 @@
       <h2>강의 자료</h2>
     </div>
     <a class="study" href="https://hon2be.github.io/ai-video-course/">
-      <div class="em">📚</div>
+      <div class="em"><i class="cil-book" aria-hidden="true"></i></div>
       <div class="txt">
         <h3>영상에 나온 프롬프트·자료</h3>
         <p>회차별로 복붙해서 쓸 수 있게 정리 · 완전 무료</p>
       </div>
-      <div class="go">→</div>
+      <div class="go"><i class="cil-arrow-right" aria-hidden="true"></i></div>
     </a>
   </section>
 
@@ -363,7 +386,6 @@
   </section>
 
   <footer>
-    카톡·인스타에서 열렸다면 · 우상단 ⋯ · 다른 브라우저에서 열기<br>
     <a href="https://youtube.com/@hon2bee_kr" data-yt="channel">YouTube</a>
     &nbsp;·&nbsp;
     <a href="https://github.com/hon2be">GitHub</a>
@@ -414,16 +436,55 @@
     return /youtube\.com|youtu\.be/.test(h) || a.hasAttribute("data-yt") || a.hasAttribute("data-id");
   }
 
-  document.querySelectorAll("a").forEach(function(a) {
-    if (!isYouTubeLink(a)) return;
-    a.addEventListener("click", function(e) {
-      if (!isMobile) return;
-      var t = parseTarget(a.getAttribute("href") || "", a.getAttribute("data-yt"), a.getAttribute("data-id"));
-      if (!t) return;
-      e.preventDefault();
-      openApp(t);
+  function bindYouTubeIntercept(root) {
+    (root || document).querySelectorAll("a").forEach(function(a) {
+      if (a.dataset.ytBound) return;
+      if (!isYouTubeLink(a)) return;
+      a.dataset.ytBound = "1";
+      a.addEventListener("click", function(e) {
+        if (!isMobile) return;
+        var t = parseTarget(a.getAttribute("href") || "", a.getAttribute("data-yt"), a.getAttribute("data-id"));
+        if (!t) return;
+        e.preventDefault();
+        openApp(t);
+      });
     });
-  });
+  }
+  bindYouTubeIntercept();
+
+  // 최신 영상 · YouTube channel RSS 동적 로딩 (rss2json 프록시)
+  var CHANNEL_RSS = "https://www.youtube.com/feeds/videos.xml?channel_id=" + CHANNEL_ID;
+  var RSS_JSON = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(CHANNEL_RSS);
+  var LIMIT = 9;
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function(c) {
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+    });
+  }
+
+  fetch(RSS_JSON)
+    .then(function(r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function(data) {
+      if (!data || !data.items || !data.items.length) return;
+      var container = document.getElementById("videos");
+      if (!container) return;
+      var html = data.items.slice(0, LIMIT).map(function(item) {
+        var m = item.link.match(/[?&]v=([\w-]+)/) || item.link.match(/youtu\.be\/([\w-]+)/);
+        var vid = m ? m[1] : "";
+        var thumb = vid ? ("https://i.ytimg.com/vi/" + vid + "/mqdefault.jpg") : item.thumbnail;
+        return '' +
+          '<a href="' + escapeHtml(item.link) + '" data-id="' + escapeHtml(vid) + '" class="video video-card">' +
+            '<div class="video-thumb">' +
+              '<img src="' + escapeHtml(thumb) + '" alt="" loading="lazy" decoding="async">' +
+            '</div>' +
+            '<h4>' + escapeHtml(item.title) + '</h4>' +
+          '</a>';
+      }).join("");
+      container.innerHTML = html;
+      bindYouTubeIntercept(container);
+    })
+    .catch(function() { /* fallback 카드 유지 */ });
 })();
 </script>
 </body>
