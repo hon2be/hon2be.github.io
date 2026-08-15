@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인정보 처리방침 · 시니어 IT 도우미 GPT · AI독학꿀벌</title>
+<meta name="description" content="시니어 IT 도우미 GPT의 개인정보 처리방침. 무엇을 수집하고 무엇을 안 하는지 정리.">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root { --black:#000; --white:#fff; --sky:#38BDF8; --yellow:#FACC15; --dim:#a3a3a3; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { background:var(--black); color:var(--white); }
+  body {
+    font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    font-size:16px; font-weight:500; line-height:1.7; letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;
+  }
+  a { color:var(--sky); text-decoration:underline; text-underline-offset:3px; }
+  main {
+    max-width:720px; margin:0 auto; padding:48px 20px 96px;
+  }
+  h1 { font-size:32px; font-weight:900; margin-bottom:8px; letter-spacing:-0.02em; }
+  h2 { font-size:20px; font-weight:900; margin-top:40px; margin-bottom:12px; }
+  p, li { color:#e5e5e5; word-break:keep-all; overflow-wrap:break-word; }
+  ul { padding-left:20px; }
+  li { margin-bottom:6px; }
+  .updated { color:var(--dim); font-size:14px; margin-bottom:32px; }
+  .home {
+    display:inline-block; margin-top:48px;
+    padding:10px 18px; border:1px solid #333; border-radius:999px;
+    color:var(--white); text-decoration:none; font-weight:700;
+  }
+  .home:hover { border-color:var(--yellow); color:var(--yellow); }
+  .callout {
+    margin-top:16px; padding:14px 18px;
+    background:#111; border-left:3px solid var(--yellow); border-radius:6px;
+  }
+  code { background:#1a1a1a; padding:2px 6px; border-radius:4px; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+
+  <h1>개인정보 처리방침</h1>
+  <p class="updated">시니어 IT 도우미 GPT · 최종 업데이트 2026-08-15</p>
+
+  <p>
+    "시니어 IT 도우미" ChatGPT Custom GPT(이하 "본 GPT")는
+    <strong>AI독학꿀벌</strong> 채널이 어르신·왕초보를 위해 무료로 제공하는 도우미입니다.
+    본 GPT 가 사용자의 어떤 정보를 어떻게 처리하는지 아래에 정리했습니다.
+  </p>
+
+  <h2>1. 본 GPT 가 직접 수집하는 정보</h2>
+  <p><strong>없습니다.</strong> 로그인·회원가입 절차가 없으며 이름·이메일·전화번호 등 개인식별정보를 요구하지 않습니다.</p>
+
+  <h2>2. 처리되는 정보</h2>
+  <p>사용자가 본 GPT 에게 보내는 <strong>질문 텍스트</strong>와 <strong>업로드한 이미지</strong>는 아래 흐름으로 처리됩니다:</p>
+  <ul>
+    <li>ChatGPT 플랫폼(OpenAI)이 대화를 받아 처리 — <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener">OpenAI 개인정보 처리방침</a> 적용</li>
+    <li>질문 텍스트는 관련 강의 검색을 위해 채널 운영자의 백엔드 서버(Supabase Edge Function)로 전달됨</li>
+    <li>백엔드 서버는 질문을 <strong>벡터 임베딩</strong>으로 변환 후 채널 강의 자료 DB 에서 유사한 조각을 검색</li>
+    <li>검색 결과(강의 조각 · 유튜브 링크)만 다시 ChatGPT 에 반환됨</li>
+  </ul>
+
+  <div class="callout">
+    본 GPT 운영자의 서버에는 <strong>질문 원문이 저장되지 않습니다.</strong>
+    검색 요청 로그(질문 텍스트 포함)가 최대 7일간 임시 보관될 수 있으며,
+    이는 서비스 오류 진단 목적에만 사용된 후 자동 삭제됩니다.
+  </div>
+
+  <h2>3. 제3자 제공</h2>
+  <p>본 GPT 는 사용자 정보를 광고·마케팅 목적의 제3자에게 제공하지 않습니다. 다만 아래 서비스가 질문 처리 과정에 기술적으로 관여합니다:</p>
+  <ul>
+    <li><strong>OpenAI</strong> — ChatGPT 대화 처리 및 질문 임베딩 계산</li>
+    <li><strong>Supabase</strong> — 강의 자료 검색용 벡터 데이터베이스 호스팅 (서울 리전)</li>
+    <li><strong>YouTube</strong> — 관련 강의 링크 클릭 시 YouTube 로 이동</li>
+  </ul>
+
+  <h2>4. 저장되는 데이터의 범위</h2>
+  <p>본 GPT 운영자가 사전에 인덱싱하여 검색 대상 DB 에 저장한 자료는 아래로 <strong>한정</strong>됩니다:</p>
+  <ul>
+    <li>AI독학꿀벌 채널의 공개 유튜브 영상 자막(공개된 정보)</li>
+    <li>채널 운영자의 강의 기획·스크립트 문서</li>
+  </ul>
+  <p>홍보 자료·이메일 연락처·개인정보 포함 문서는 인덱싱 대상에서 <strong>원천 제외</strong>되며, 저장 전 자동 필터(이메일·전화번호·주민등록번호·신용카드·API 키 정규식 스캔)를 거칩니다.</p>
+
+  <h2>5. 사용자 권리</h2>
+  <p>본 GPT 는 사용자 계정을 만들지 않으므로 삭제·정정할 사용자 정보 자체가 존재하지 않습니다. 사용자와 ChatGPT 사이의 대화 기록은 사용자의 ChatGPT 계정에서 직접 관리할 수 있습니다.</p>
+
+  <h2>6. 문의</h2>
+  <p>
+    본 방침에 관한 문의는 아래로 부탁드립니다.<br>
+    이메일: <a href="mailto:hone2be@gmail.com">hone2be@gmail.com</a><br>
+    채널: <a href="https://youtube.com/@hon2bee_kr" target="_blank" rel="noopener">YouTube AI독학꿀벌</a>
+  </p>
+
+  <h2>7. 변경 이력</h2>
+  <p>본 방침이 변경될 경우 이 페이지 상단의 "최종 업데이트" 날짜를 갱신합니다.</p>
+
+  <a href="/tv/" class="home">← 홈으로</a>
+
+</main>
+</body>
+</html>
