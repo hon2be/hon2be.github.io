@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시니어 IT 도우미 · AI독학꿀벌</title>
+<meta name="description" content="AI독학꿀벌 시니어 IT 도우미 챗봇으로 이동합니다.">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex,follow">
+
+<!-- Open Graph (for messenger previews) -->
+<meta property="og:title" content="시니어 IT 도우미 · AI독학꿀벌">
+<meta property="og:description" content="스마트폰·컴퓨터·AI 뭐든 물어보세요. 존댓말로 차근차근 안내해드립니다.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hon2be.github.io/tv/ai/">
+<meta property="og:image" content="https://i.ytimg.com/vi/KXLaTWHWUos/maxresdefault.jpg">
+
+<!-- Meta refresh fallback (in case JS is disabled or intercepted) -->
+<meta http-equiv="refresh" content="0; url=https://gemini.google.com/gem/1sAt5BeCnhHPHwXmb83XrJtlW_0zHrhr5?usp=sharing">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; word-break: keep-all; overflow-wrap: break-word; }
+  html, body {
+    background: #0a0a0a; color: #fff; height: 100vh;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  body {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 24px; text-align: center; gap: 24px;
+  }
+  .badge {
+    background: #FACC15; color: #000;
+    padding: 6px 14px; border-radius: 999px;
+    font-weight: 900; font-size: 13px;
+  }
+  h1 {
+    font-size: 28px; font-weight: 900; line-height: 1.3;
+  }
+  p { color: #a3a3a3; font-size: 15px; line-height: 1.6; max-width: 320px; }
+  .spinner {
+    width: 40px; height: 40px;
+    border: 4px solid rgba(250, 204, 21, 0.15);
+    border-top-color: #FACC15;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 8px 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .manual {
+    margin-top: 16px;
+    padding: 14px 24px;
+    background: #FACC15; color: #000;
+    border-radius: 999px; font-weight: 900;
+    text-decoration: none; font-size: 16px;
+    display: inline-block;
+  }
+  .home {
+    margin-top: 32px; color: #666; font-size: 13px; text-decoration: none;
+  }
+  .home:hover { color: #FACC15; }
+</style>
+</head>
+<body>
+
+  <div class="badge">AI독학꿀벌</div>
+  <h1>시니어 IT 도우미로<br>이동 중...</h1>
+  <div class="spinner"></div>
+  <p>잠시만 기다려주세요.<br>이동이 안 되면 아래 버튼을 눌러주세요.</p>
+
+  <a class="manual" id="fallback" href="https://gemini.google.com/gem/1sAt5BeCnhHPHwXmb83XrJtlW_0zHrhr5?usp=sharing">
+    챗봇 열기
+  </a>
+
+  <a class="home" href="/tv/">← 채널 홈으로</a>
+
+<script>
+  (function () {
+    var GEM_URL = "https://gemini.google.com/gem/1sAt5BeCnhHPHwXmb83XrJtlW_0zHrhr5?usp=sharing";
+
+    // Immediate redirect via JS (faster than meta refresh)
+    // Wrapped in setTimeout so the page paints first (some in-app browsers block instant navigation)
+    setTimeout(function () {
+      window.location.replace(GEM_URL);
+    }, 200);
+  })();
+</script>
+
+</body>
+</html>
