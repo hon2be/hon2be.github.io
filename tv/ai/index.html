@@ -15,23 +15,20 @@
 <meta property="og:url" content="https://hon2be.github.io/tv/ai/">
 <meta property="og:image" content="https://i.ytimg.com/vi/KXLaTWHWUos/maxresdefault.jpg">
 
-<!-- Meta refresh fallback (in case JS is disabled or intercepted) -->
-<meta http-equiv="refresh" content="0; url=https://gemini.google.com/gem/1sAt5BeCnhHPHwXmb83XrJtlW_0zHrhr5?usp=sharing">
-
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; word-break: keep-all; overflow-wrap: break-word; }
   html, body {
-    background: #0a0a0a; color: #fff; height: 100vh;
+    background: #0a0a0a; color: #fff; min-height: 100vh;
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     letter-spacing: -0.02em;
   }
   body {
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
-    padding: 24px; text-align: center; gap: 24px;
+    padding: 24px; text-align: center; gap: 20px;
   }
   .badge {
     background: #FACC15; color: #000;
@@ -39,54 +36,181 @@
     font-weight: 900; font-size: 13px;
   }
   h1 {
-    font-size: 28px; font-weight: 900; line-height: 1.3;
+    font-size: 26px; font-weight: 900; line-height: 1.35;
   }
-  p { color: #a3a3a3; font-size: 15px; line-height: 1.6; max-width: 320px; }
+  p { color: #a3a3a3; font-size: 15px; line-height: 1.65; max-width: 340px; }
   .spinner {
-    width: 40px; height: 40px;
+    width: 36px; height: 36px;
     border: 4px solid rgba(250, 204, 21, 0.15);
     border-top-color: #FACC15;
     border-radius: 50%;
     animation: spin 0.9s linear infinite;
-    margin: 8px 0;
+    margin: 4px 0;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .manual {
-    margin-top: 16px;
-    padding: 14px 24px;
+
+  .btn {
+    padding: 16px 28px;
     background: #FACC15; color: #000;
     border-radius: 999px; font-weight: 900;
-    text-decoration: none; font-size: 16px;
-    display: inline-block;
+    text-decoration: none; font-size: 17px;
+    display: inline-block; border: none;
+    font-family: inherit; cursor: pointer;
+  }
+  .btn.ghost {
+    background: transparent; color: #FACC15;
+    border: 2px solid #FACC15;
+    font-size: 15px; padding: 12px 22px;
   }
   .home {
-    margin-top: 32px; color: #666; font-size: 13px; text-decoration: none;
+    margin-top: 24px; color: #666; font-size: 13px; text-decoration: none;
   }
   .home:hover { color: #FACC15; }
+
+  /* 인앱 브라우저 감지 시 안내 카드 */
+  .inapp-card {
+    background: #1a1a1a;
+    border: 2px solid #FACC15;
+    border-radius: 20px;
+    padding: 28px 24px;
+    max-width: 380px;
+    display: flex; flex-direction: column; gap: 16px;
+    align-items: center;
+  }
+  .inapp-card h2 {
+    font-size: 20px; font-weight: 900; color: #FACC15; line-height: 1.35;
+  }
+  .inapp-card p { color: #d4d4d4; font-size: 15px; }
+  .inapp-card .steps {
+    background: #0a0a0a;
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 14px; color: #a3a3a3; line-height: 1.75;
+    width: 100%;
+  }
+  .inapp-card .steps b { color: #fff; }
+
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
 
-  <div class="badge">AI독학꿀벌</div>
-  <h1>시니어 IT 도우미로<br>이동 중...</h1>
-  <div class="spinner"></div>
-  <p>잠시만 기다려주세요.<br>이동이 안 되면 아래 버튼을 눌러주세요.</p>
+  <!-- 기본 · 자동 이동 안내 -->
+  <div id="loading" style="display:flex; flex-direction:column; align-items:center; gap:20px;">
+    <div class="badge">AI독학꿀벌</div>
+    <h1>시니어 IT 도우미로<br>이동 중...</h1>
+    <div class="spinner"></div>
+    <p>잠시만 기다려주세요.<br>이동이 안 되면 아래 버튼을 눌러주세요.</p>
+    <a class="btn" id="fallback" href="https://gemini.google.com/gem/1sAt5BeCnhHPHwXmb83XrJtlW_0zHrhr5?usp=sharing">
+      챗봇 열기
+    </a>
+  </div>
 
-  <a class="manual" id="fallback" href="https://gemini.google.com/gem/1sAt5BeCnhHPHwXmb83XrJtlW_0zHrhr5?usp=sharing">
-    챗봇 열기
-  </a>
+  <!-- 인앱 브라우저 감지 시 · 외부 브라우저로 열기 안내 -->
+  <div id="inapp" class="inapp-card hidden">
+    <div class="badge">🔒 로그인이 안 되나요?</div>
+    <h2>구글 로그인은<br>일반 브라우저에서만 됩니다</h2>
+    <p id="inapp-hint">카톡·인스타·유튜브 앱 안에서는 · 구글 로그인이 막혀요.<br><b style="color:#FACC15">아래 버튼</b>으로 열어주세요.</p>
+
+    <a class="btn" id="open-chrome" href="#">Chrome 에서 열기</a>
+    <a class="btn ghost" id="copy-url" href="#">주소 복사하기</a>
+
+    <div class="steps" id="ios-steps">
+      <b>혹시 안 열리면:</b><br>
+      1. 우측 상단 <b>⋯</b> 또는 <b>공유</b> 아이콘<br>
+      2. <b>Safari로 열기</b> 또는 <b>다른 브라우저로 열기</b><br>
+      3. 브라우저에서 로그인 후 챗봇 이용
+    </div>
+  </div>
 
   <a class="home" href="/tv/">← 채널 홈으로</a>
 
 <script>
   (function () {
     var GEM_URL = "https://gemini.google.com/gem/1sAt5BeCnhHPHwXmb83XrJtlW_0zHrhr5?usp=sharing";
+    var GEM_HOST_PATH = "gemini.google.com/gem/1sAt5BeCnhHPHwXmb83XrJtlW_0zHrhr5?usp=sharing";
 
-    // Immediate redirect via JS (faster than meta refresh)
-    // Wrapped in setTimeout so the page paints first (some in-app browsers block instant navigation)
-    setTimeout(function () {
-      window.location.replace(GEM_URL);
-    }, 200);
+    var ua = navigator.userAgent || "";
+    var uaLc = ua.toLowerCase();
+
+    // 인앱 브라우저 패턴
+    var inAppPatterns = [
+      "kakaotalk", "kakaostory",
+      "instagram", "fbav", "fban", "fb_iab",
+      "line/",
+      "naver(inapp)",
+      "daumapps",
+      "everytimeapp",
+      "threads",
+      "trill", "musical_ly"  // TikTok
+    ];
+    var isInApp = inAppPatterns.some(function (p) { return uaLc.indexOf(p) !== -1; });
+
+    var isAndroid = /android/i.test(ua);
+    var isIOS = /iphone|ipad|ipod/i.test(ua);
+
+    function showInApp() {
+      document.getElementById("loading").classList.add("hidden");
+      document.getElementById("inapp").classList.remove("hidden");
+
+      var openBtn = document.getElementById("open-chrome");
+      var copyBtn = document.getElementById("copy-url");
+      var hint = document.getElementById("inapp-hint");
+
+      if (isAndroid) {
+        // Chrome intent — Chrome이 설치되어 있으면 Chrome 실행, 없으면 fallback URL
+        var intent = "intent://" + GEM_HOST_PATH
+          + "#Intent;scheme=https;package=com.android.chrome"
+          + ";S.browser_fallback_url=" + encodeURIComponent(GEM_URL) + ";end";
+        openBtn.setAttribute("href", intent);
+        openBtn.textContent = "Chrome 에서 열기";
+      } else if (isIOS) {
+        // iOS Chrome 스킴 (Chrome 앱 설치 시)
+        var chromeUrl = "googlechromes://" + GEM_HOST_PATH;
+        openBtn.setAttribute("href", chromeUrl);
+        openBtn.textContent = "Chrome 앱에서 열기";
+        hint.innerHTML = '카톡·인스타 앱 안에서는 · 구글 로그인이 막혀요.<br><b style="color:#FACC15">Chrome 앱</b>이 있으면 아래 버튼을 · 없으면 <b>Safari로 열기</b>를 이용해주세요.';
+      } else {
+        openBtn.setAttribute("href", GEM_URL);
+        openBtn.setAttribute("target", "_blank");
+        openBtn.setAttribute("rel", "noopener");
+      }
+
+      // 주소 복사
+      copyBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        function done(msg) {
+          copyBtn.textContent = msg;
+          setTimeout(function () { copyBtn.textContent = "주소 복사하기"; }, 2500);
+        }
+        function fallbackCopy() {
+          var ta = document.createElement("textarea");
+          ta.value = GEM_URL;
+          ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); done("✓ 주소 복사 완료"); }
+          catch (err) { done("복사 실패 · 주소를 길게 눌러주세요"); }
+          document.body.removeChild(ta);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(GEM_URL)
+            .then(function () { done("✓ 주소 복사 완료"); })
+            .catch(fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+      });
+    }
+
+    if (isInApp) {
+      // 인앱 감지 · 자동 리다이렉트 안 함 · 안내 UI 표시
+      showInApp();
+    } else {
+      // 일반 브라우저 · 기존처럼 자동 이동
+      setTimeout(function () { window.location.replace(GEM_URL); }, 200);
+    }
   })();
 </script>
 
